@@ -1,4 +1,4 @@
-package com.example.udemyandroid;
+package com.example.shoppinglist;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
