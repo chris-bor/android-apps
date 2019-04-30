@@ -17,6 +17,8 @@ import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
 
+    public final static String KEY = "MAGIC KEY";
+
     @BindView(R.id.shoppingListButton)
     Button shoppingListButton;
 
@@ -41,8 +43,10 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.shoppingListButton)
     void onClickShoppingList() {
         Intent intent = new Intent(this, ShoppingListActivity.class);
+        intent.putExtra(KEY, "Wiadomość do przekazania.");
         startActivity(intent);
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
