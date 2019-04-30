@@ -8,10 +8,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
+
+//    @BindView(R.id.shoppingListButton)
+//    Button shoppingListButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
