@@ -3,4 +3,5 @@
     <string name="app_name">Lista zakupów</string>
     <string name="action_settings">Ustawienia</string>
     <string name="shopping_list_button">Lista zakupów</string>
+    <string name="title_activity_shopping_list">Lista zakupów</string>
 </resources>
