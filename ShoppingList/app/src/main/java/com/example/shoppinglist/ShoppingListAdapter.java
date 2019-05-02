@@ -6,12 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
-import com.example.shoppinglist.R;
 
 import java.util.List;
 
@@ -21,6 +20,7 @@ public class ShoppingListAdapter<String> extends ArrayAdapter {
     private int resource;
     private ArrayAdapter<String> spinnerAdapter;
     private List<String> spinnerItems;
+    private Spinner spinner;
 
     public ShoppingListAdapter(@NonNull Context context, int resource, @NonNull List objects) {
         super(context, resource, objects);
@@ -30,10 +30,12 @@ public class ShoppingListAdapter<String> extends ArrayAdapter {
     }
 
     public ShoppingListAdapter(@NonNull Context context, int resource, @NonNull List objects,
-                               ArrayAdapter<String> spinnerAdapter, List<String> spinnerItems) {
+                               ArrayAdapter<String> spinnerAdapter, List<String> spinnerItems,
+                               Spinner spinner) {
         this(context, resource, objects);
         this.spinnerAdapter = spinnerAdapter;
         this.spinnerItems = spinnerItems;
+        this.spinner = spinner;
     }
 
     @NonNull
@@ -48,6 +50,9 @@ public class ShoppingListAdapter<String> extends ArrayAdapter {
             @Override
             public void onClick(View view) {
                 spinnerItems.add(objects.get(position));
+                spinnerItems.remove("");
+                spinnerItems.add((String) "");
+                spinner.setSelection(spinnerItems.indexOf(""));
                 spinnerAdapter.notifyDataSetChanged();
                 objects.remove(position);
                 notifyDataSetChanged();

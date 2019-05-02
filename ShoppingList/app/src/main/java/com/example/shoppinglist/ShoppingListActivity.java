@@ -3,6 +3,7 @@ package com.example.shoppinglist;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -10,13 +11,11 @@ import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.collection.ArraySet;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -71,8 +70,23 @@ public class ShoppingListActivity extends AppCompatActivity {
         spinnerAdapter =
                 new ArrayAdapter<>(this, android.R.layout.select_dialog_item, spinnerItems);
         itemSpinner.setAdapter(spinnerAdapter);
+        itemSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (!spinnerItems.get(i).equals("")) {
+                    itemName.setText("" + spinnerItems.get(i));
+                    spinnerItems.remove(i);
+                    spinnerAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
         listAdapter = new ShoppingListAdapter<>(this, R.layout.row_shopping_list, listItems,
-                spinnerAdapter, spinnerItems);
+                spinnerAdapter, spinnerItems, itemSpinner);
         itemList.setAdapter(listAdapter);
     }
 
