@@ -11,11 +11,13 @@ import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.collection.ArraySet;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,6 +33,8 @@ public class ShoppingListActivity extends AppCompatActivity {
 
     private List<String> listItems;
     private List<String> spinnerItems;
+    private Set<String> listSetItems;
+    private Set<String> spinnerSetItems;
 
     private static final String LIST_ITEMS_KEY = "LIST_ITEMS_KEY";
     private static final String LIST_SPINNER_KEY = "LIST_SPINNER_KEY";
@@ -48,14 +52,12 @@ public class ShoppingListActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        listItems = new ArrayList<>();
-        spinnerItems = new ArrayList<>();
-
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (itemName.getText() != null && !itemName.getText().toString().trim().isEmpty()) {
+                if (itemName.getText() != null && !itemName.getText().toString().trim().isEmpty() &&
+                listSetItems.add(itemName.getText().toString())) {
                     listItems.add(itemName.getText().toString());
                     itemName.setText("");
                     listAdapter.notifyDataSetChanged();
@@ -65,8 +67,10 @@ public class ShoppingListActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         SharedPreferences sp = getSharedPreferences(SHOPPING_LIST_KEY, MODE_PRIVATE);
-//        listItems  = sp.getStringSet(LIST_ITEMS_KEY, new ArraySet<String>());
-//        spinnerItems  = sp.getStringSet(LIST_SPINNER_KEY, new ArraySet<String>());
+        listSetItems  = sp.getStringSet(LIST_ITEMS_KEY, new ArraySet<>());
+        spinnerSetItems  = sp.getStringSet(LIST_SPINNER_KEY, new ArraySet<>());
+        listItems = new ArrayList<>(listSetItems);
+        spinnerItems = new ArrayList<>(spinnerSetItems);
         spinnerAdapter =
                 new ArrayAdapter<>(this, android.R.layout.select_dialog_item, spinnerItems);
         itemSpinner.setAdapter(spinnerAdapter);
@@ -94,8 +98,10 @@ public class ShoppingListActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         SharedPreferences.Editor editor = getSharedPreferences(SHOPPING_LIST_KEY, MODE_PRIVATE).edit();
-//        editor.putStringSet(LIST_ITEMS_KEY, listItems);
-//        editor.putStringSet(LIST_SPINNER_KEY, spinnerItems);
+        listSetItems = new ArraySet<>(listItems);
+        spinnerSetItems = new ArraySet<>(spinnerItems);
+        editor.putStringSet(LIST_ITEMS_KEY, listSetItems);
+        editor.putStringSet(LIST_SPINNER_KEY, spinnerSetItems);
         editor.commit(); // UWAGA Może przywiesić wątek, można użyć .apply() działa w innym wątku, a nie chcemy odczytania przed zapisem
     }
 }
