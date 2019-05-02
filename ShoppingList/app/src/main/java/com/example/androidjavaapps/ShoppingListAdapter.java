@@ -1,4 +1,4 @@
-package com.example.shoppinglist;
+package com.example.androidjavaapps;
 
 import android.content.Context;
 import android.view.LayoutInflater;

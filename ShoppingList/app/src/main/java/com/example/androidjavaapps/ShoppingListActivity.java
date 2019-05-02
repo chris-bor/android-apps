@@ -1,4 +1,4 @@
-package com.example.shoppinglist;
+package com.example.androidjavaapps;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -51,6 +51,7 @@ public class ShoppingListActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
