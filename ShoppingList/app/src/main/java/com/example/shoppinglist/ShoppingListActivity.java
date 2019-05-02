@@ -31,13 +31,14 @@ public class ShoppingListActivity extends AppCompatActivity {
     Spinner itemSpinner;
 
     private List<String> listItems;
-    private Set<String> spinnerItems;
+    private List<String> spinnerItems;
 
     private static final String LIST_ITEMS_KEY = "LIST_ITEMS_KEY";
     private static final String LIST_SPINNER_KEY = "LIST_SPINNER_KEY";
     private static final String SHOPPING_LIST_KEY = "SHOPPING_LIST_KEY";
 
-    private ArrayAdapter<String> listAdapter;
+    private ShoppingListAdapter<String> listAdapter;
+    private ArrayAdapter<String> spinnerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,7 @@ public class ShoppingListActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         listItems = new ArrayList<>();
+        spinnerItems = new ArrayList<>();
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -65,11 +67,12 @@ public class ShoppingListActivity extends AppCompatActivity {
 
         SharedPreferences sp = getSharedPreferences(SHOPPING_LIST_KEY, MODE_PRIVATE);
 //        listItems  = sp.getStringSet(LIST_ITEMS_KEY, new ArraySet<String>());
-        spinnerItems  = sp.getStringSet(LIST_SPINNER_KEY, new ArraySet<String>());
-
-        listAdapter = new ArrayAdapter<String>(this,  android.R.layout.simple_list_item_1
-                , listItems);
-
+//        spinnerItems  = sp.getStringSet(LIST_SPINNER_KEY, new ArraySet<String>());
+        spinnerAdapter =
+                new ArrayAdapter<>(this, android.R.layout.select_dialog_item, spinnerItems);
+        itemSpinner.setAdapter(spinnerAdapter);
+        listAdapter = new ShoppingListAdapter<>(this, R.layout.row_shopping_list, listItems,
+                spinnerAdapter, spinnerItems);
         itemList.setAdapter(listAdapter);
     }
 
@@ -78,7 +81,7 @@ public class ShoppingListActivity extends AppCompatActivity {
         super.onPause();
         SharedPreferences.Editor editor = getSharedPreferences(SHOPPING_LIST_KEY, MODE_PRIVATE).edit();
 //        editor.putStringSet(LIST_ITEMS_KEY, listItems);
-        editor.putStringSet(LIST_SPINNER_KEY, spinnerItems);
+//        editor.putStringSet(LIST_SPINNER_KEY, spinnerItems);
         editor.commit(); // UWAGA Może przywiesić wątek, można użyć .apply() działa w innym wątku, a nie chcemy odczytania przed zapisem
     }
 }
