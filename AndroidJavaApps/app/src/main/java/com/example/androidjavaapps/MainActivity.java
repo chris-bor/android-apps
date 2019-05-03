@@ -32,7 +32,12 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.shoppingListButton)
     void onClickShoppingList() {
         Intent intent = new Intent(this, ShoppingListActivity.class);
+        startActivity(intent);
+    }
 
+    @OnClick(R.id.drawButton)
+    void onClickDraw() {
+        Intent intent = new Intent(this, DrawActivity.class);
         startActivity(intent);
     }
 

@@ -9,7 +9,7 @@
     tools:showIn="@layout/activity_main">
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/drawButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
@@ -35,24 +35,24 @@
         app:layout_constraintVertical_bias="0.3" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/apiButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
         android:text="@string/api_button"
-        app:layout_constraintEnd_toEndOf="@+id/button4"
+        app:layout_constraintEnd_toEndOf="@+id/drawButton"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/button4"
-        app:layout_constraintTop_toBottomOf="@+id/button4" />
+        app:layout_constraintStart_toStartOf="@+id/drawButton"
+        app:layout_constraintTop_toBottomOf="@+id/drawButton" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/viewButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:text="@string/view_button"
-        app:layout_constraintEnd_toEndOf="@+id/button3"
-        app:layout_constraintStart_toStartOf="@+id/button3"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
+        app:layout_constraintEnd_toEndOf="@+id/apiButton"
+        app:layout_constraintStart_toStartOf="@+id/apiButton"
+        app:layout_constraintTop_toBottomOf="@+id/apiButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
