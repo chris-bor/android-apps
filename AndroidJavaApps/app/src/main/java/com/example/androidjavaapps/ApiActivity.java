@@ -16,10 +16,13 @@ public class ApiActivity extends AppCompatActivity {
 
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
-    @BindView(R.id.button)
-    Button button;
-    @BindView(R.id.textView)
-    TextView textView;
+    @BindView(R.id.htmlDataButton)
+    Button htmlDataButton;
+    @BindView(R.id.resultTextView)
+    TextView resultTextView;
+    @BindView(R.id.jsonDataButton)
+    Button jsonDataButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +30,13 @@ public class ApiActivity extends AppCompatActivity {
         setContentView(R.layout.activity_api);
         ButterKnife.bind(this);
         progressBar.setVisibility(View.INVISIBLE);
-        button.setOnClickListener(new View.OnClickListener() {
+        htmlDataButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new ThreadClass().execute("URL", "URL2", "URL3");
+            }
+        });
+        jsonDataButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 new ThreadClass().execute("URL", "URL2", "URL3");
@@ -39,7 +48,7 @@ public class ApiActivity extends AppCompatActivity {
         @Override // operates in user thread (main thread)
         protected void onPreExecute() {
             progressBar.setVisibility(View.VISIBLE);
-            textView.setText(""+System.currentTimeMillis());
+            resultTextView.setText("" + System.currentTimeMillis());
             super.onPreExecute();
         }
 
@@ -50,21 +59,21 @@ public class ApiActivity extends AppCompatActivity {
         }
 
         @Override  // operates in own thread
-        protected  Float doInBackground(String... params) {
+        protected Float doInBackground(String... params) {
             String url = params[0];
-                String a = url;
-                for (int i = 0; i < 100000; i++) {
-                    a = a + url;
-                    if (i % 1000 == 0)
-                        publishProgress(i / 1000);
-                }
+            String a = url;
+            for (int i = 0; i < 100000; i++) {
+                a = a + url;
+                if (i % 1000 == 0)
+                    publishProgress(i / 1000);
+            }
             return 0.0F;
         }
 
         @Override
         protected void onPostExecute(Float f) {
             progressBar.setVisibility(View.INVISIBLE);
-            textView.setText(textView.getText() + " " +System.currentTimeMillis());
+            resultTextView.setText(resultTextView.getText() + " " + System.currentTimeMillis());
             super.onPostExecute(f);
         }
 
