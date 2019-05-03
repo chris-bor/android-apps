@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DrawActivity"></activity>
+        <activity android:name=".ApiActivity"></activity>
+        <activity android:name=".DrawActivity" />
         <activity
             android:name=".ShoppingListActivity"
             android:label="@string/title_activity_shopping_list"
