@@ -35,7 +35,7 @@ public class ApiActivity extends AppCompatActivity {
         });
     }
 
-    private class ThreadClass extends AsyncTask<String, Integer, Void> {
+    private class ThreadClass extends AsyncTask<String, Integer, Float> {
         @Override // operates in user thread (main thread)
         protected void onPreExecute() {
             progressBar.setVisibility(View.VISIBLE);
@@ -50,7 +50,7 @@ public class ApiActivity extends AppCompatActivity {
         }
 
         @Override  // operates in own thread
-        protected  Void doInBackground(String... params) {
+        protected  Float doInBackground(String... params) {
             String url = params[0];
                 String a = url;
                 for (int i = 0; i < 100000; i++) {
@@ -58,19 +58,19 @@ public class ApiActivity extends AppCompatActivity {
                     if (i % 1000 == 0)
                         publishProgress(i / 1000);
                 }
-            return null;
+            return 0.0F;
         }
 
         @Override
-        protected void onPostExecute(Void aVoid) {
+        protected void onPostExecute(Float f) {
             progressBar.setVisibility(View.INVISIBLE);
             textView.setText(textView.getText() + " " +System.currentTimeMillis());
-            super.onPostExecute(aVoid);
+            super.onPostExecute(f);
         }
 
         @Override // cancel(true) in doInBackground is needed
-        protected void onCancelled(Void aVoid) {
-            super.onCancelled(aVoid);
+        protected void onCancelled(Float f) {
+            super.onCancelled(f);
         }
     }
 }
