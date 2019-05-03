@@ -9,6 +9,18 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.Cache;
+import com.android.volley.Network;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.BasicNetwork;
+import com.android.volley.toolbox.DiskBasedCache;
+import com.android.volley.toolbox.HurlStack;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -23,6 +35,8 @@ public class ApiActivity extends AppCompatActivity {
     @BindView(R.id.jsonDataButton)
     Button jsonDataButton;
 
+    private RequestQueue requestQueue;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +44,25 @@ public class ApiActivity extends AppCompatActivity {
         setContentView(R.layout.activity_api);
         ButterKnife.bind(this);
         progressBar.setVisibility(View.INVISIBLE);
+        requestQueue = Volley.newRequestQueue(this);
         htmlDataButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new ThreadClass().execute("URL", "URL2", "URL3");
+                StringRequest stringRequest = new StringRequest(Request.Method.GET,
+                        "https://www.google.pl/",
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                resultTextView.setText(response);
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                resultTextView.setText("!!!"+error.getMessage());
+                            }
+                        });
+                requestQueue.add(stringRequest);
             }
         });
         jsonDataButton.setOnClickListener(new View.OnClickListener() {
