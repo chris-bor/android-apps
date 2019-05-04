@@ -9,17 +9,22 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.volley.Cache;
-import com.android.volley.Network;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.BasicNetwork;
-import com.android.volley.toolbox.DiskBasedCache;
-import com.android.volley.toolbox.HurlStack;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.androidjavaapps.model.User;
+import com.google.gson.Gson;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -65,10 +70,36 @@ public class ApiActivity extends AppCompatActivity {
                 requestQueue.add(stringRequest);
             }
         });
+        String jsonUrl = "https://jsonplaceholder.typicode.com/users";
+        List<User> users = new ArrayList<>();
         jsonDataButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new ThreadClass().execute("URL", "URL2", "URL3");
+                JsonArrayRequest jar = new JsonArrayRequest(jsonUrl,
+                        new Response.Listener<JSONArray>() {
+                            @Override
+                            public void onResponse(JSONArray response) {
+                                try {
+                                    for (int i = 0; i < response.length(); i++) {
+                                        JSONObject user = (JSONObject) response.get(i);
+                                        Gson gson = new Gson();
+                                        User u = gson.fromJson(user.toString(), User.class);
+                                        users.add(u);
+                                    }
+                                    resultTextView.setText(users.get(0).getName());
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                resultTextView.setText("!!!"+error.getMessage());
+
+                            }
+                        });
+                requestQueue.add(jar);
             }
         });
     }
