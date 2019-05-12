@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.migellal:dayview:0.0.1@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2836d18e9f15e0e00caa4c1a2fcb9034/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2836d18e9f15e0e00caa4c1a2fcb9034/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.migellal/dayview/0.0.1/151c6fcd7b1a84c72afabe2331497ec878e24574/dayview-0.0.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
