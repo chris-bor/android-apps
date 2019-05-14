@@ -2,19 +2,28 @@ package com.example.androidapps;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Button;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
+    private final List<Class> classList
+            = new ArrayList<>(Arrays.asList(
+                    ShoppingListActivity.class,
+                    DrawActivity.class,
+                    ApiActivity.class,
+                    ViewActivity.class));
 
     @BindView(R.id.shoppingListButton)
     Button shoppingListButton;
