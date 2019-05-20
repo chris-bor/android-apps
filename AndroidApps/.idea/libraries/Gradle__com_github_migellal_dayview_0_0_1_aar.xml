@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.migellal:dayview:0.0.1@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2836d18e9f15e0e00caa4c1a2fcb9034/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2836d18e9f15e0e00caa4c1a2fcb9034/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/6513bc81a3e26890bf11a780cb25608d/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/6513bc81a3e26890bf11a780cb25608d/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
