@@ -1,32 +1,17 @@
 package com.example.androidapps;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
-    private final List<Class> classList
-            = new ArrayList<>(Arrays.asList(
-                    ShoppingListActivity.class,
-                    DrawActivity.class,
-                    ApiActivity.class,
-                    ViewActivity.class));
-
-    @BindView(R.id.shoppingListButton)
-    Button shoppingListButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,32 +19,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        MenuListAdapter adapter = new MenuListAdapter();
+        RecyclerView menuRecyclerView = findViewById(R.id.menuRecyclerView);
+        menuRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        menuRecyclerView.setAdapter(adapter);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-    }
-
-    @OnClick(R.id.shoppingListButton)
-    void onClickShoppingList() {
-        Intent intent = new Intent(this, ShoppingListActivity.class);
-        startActivity(intent);
-    }
-
-    @OnClick(R.id.drawButton)
-    void onClickDraw() {
-        Intent intent = new Intent(this, DrawActivity.class);
-        startActivity(intent);
-    }
-
-    @OnClick(R.id.apiButton)
-    void onClickApi() {
-        Intent intent = new Intent(this, ApiActivity.class);
-        startActivity(intent);
-    }
-
-    @OnClick(R.id.viewButton)
-    void onClickView() {
-        Intent intent = new Intent(this, ViewActivity.class);
-        startActivity(intent);
     }
 
     @Override
