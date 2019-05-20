@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Shopping list</string>
+    <string name="app_name">Android apps</string>
     <string name="action_settings">Settings</string>
     <string name="shopping_list_button">Shopping list</string>
     <string name="draw_button">Draw</string>
