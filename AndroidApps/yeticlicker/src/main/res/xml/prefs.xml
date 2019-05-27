@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:textColor="@color/colorWhite">
+
+    <SwitchPreference
+            android:defaultValue="false"
+            android:title="Keep running in background"
+            android:key="switch_preference"
+            android:textColor="@color/colorWhite"
+    />
+</PreferenceScreen>

@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Clicker App</string>
+    <string name="title_activity_menu">Clicker</string>
+    <string name="clicked">+1</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+</resources>

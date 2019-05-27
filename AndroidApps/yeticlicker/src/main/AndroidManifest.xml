@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          package="com.example.yeticlicker">
+
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+
+    <application>
+        <service
+                android:name="com.example.yeticlicker.AutoClickService"
+                android:enabled="true"
+                android:exported="true">
+        </service>
+
+        <activity
+                android:name="com.example.yeticlicker.ShopActivity"
+                android:theme="@style/AppTheme.Shop">
+        </activity>
+        <activity android:name="com.example.yeticlicker.RankingActivity">
+        </activity>
+        <activity android:name="com.example.yeticlicker.OptionsActivity">
+        </activity>
+        <activity
+                android:name="com.example.yeticlicker.MenuActivity"
+                android:label="@string/title_activity_menu"
+                android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name="com.example.yeticlicker.MainActivity">
+        </activity>
+    </application>
+
+</manifest>
