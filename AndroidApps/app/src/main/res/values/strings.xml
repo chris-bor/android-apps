@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Android apps</string>
     <string name="action_settings">Settings</string>
+    <string name="yeticlicker_button">Yeti clicker</string>
     <string name="shopping_list_button">Shopping list</string>
     <string name="draw_button">Draw</string>
     <string name="api_button">API</string>

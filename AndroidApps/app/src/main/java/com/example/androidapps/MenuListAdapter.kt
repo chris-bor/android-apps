@@ -10,12 +10,14 @@ import androidx.recyclerview.widget.RecyclerView
 
 class MenuListAdapter : RecyclerView.Adapter<MenuListAdapter.CustomViewHolder>() {
     private val stringList = listOf(
+            R.string.yeticlicker_button,
             R.string.shopping_list_button,
             R.string.draw_button,
             R.string.api_button,
             R.string.view_button
     )
     private val classList = listOf(
+            com.example.yeticlicker.MenuActivity::class.java,
             ShoppingListActivity::class.java,
             DrawActivity::class.java,
             ApiActivity::class.java,

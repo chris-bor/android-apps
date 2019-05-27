@@ -9,4 +9,5 @@
     <string name="html_button">Dane z  HTML</string>
     <string name="json_button">Dane z JSON</string>
     <string name="title_activity_shopping_list">Lista zakupów</string>
+    <string name="yeticlicker_button">Klikaj w Yeti</string>
 </resources>

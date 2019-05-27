@@ -14,7 +14,7 @@ class GameState : Serializable {
 
     private val fileName: String = "/state.bin"
     var currentScore: Int = 0
-    var maxScore: Int = 1000
+    var maxScore: Int = 1000000000
     var click: Int = 1
     var autoCps: Double = 0.0
     var autoCpsMS: Long = 0 // w milisekundach
